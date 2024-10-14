@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        label {
+            display: block;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .playlist-name {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .playlist-name input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 120px);
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Song Recommendations</h2>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            <form method="post" action="{{ url_for('add_to_playlist') }}">
+                <ul>
+                    {% for track in tracks %}
+                        <li>
+                            <label>
+                                <input type="checkbox" name="track_ids" value="{{ track['uri'] }}">
+                                {{ track['name'] }} by {{ track['artists'][0]['name'] }}
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+                <div class="playlist-name">
+                    <input type="text" name="playlist_name" placeholder="Enter playlist name" required>
+                    <button type="submit">Add to Playlist</button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

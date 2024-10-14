@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+<!-- googled how to do snippet thingy but idk if it's right at all im not sure-->
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+<body>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <h1>Track Recommendations</h1>
+        <form method="POST">
+            <ul>
+                {% for track in tracks %}
+                    <li>
+                        {{ track['song'] }} by {{ track['artist'] }}
+                        <input type="checkbox" name="tracks" value="{{ track['song'] }} : {{ track['artist'] }}">
+                        <br>
+                        {% if track['snippet'] %}
+                            <!-- snippet from Spotify -->
+                            <audio controls>
+                                <source src="{{ track['snippet'] }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <br>
+                            
+                        {% else %}
+                            <p>No snippet available</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="text" name="playlist_name" placeholder="Playlist Name" required>
+            <button type="submit">Create Playlist</button>
+        </form>
+    {% endif %}
+</body>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommendations{% endblock %}
+{% block content %}
+<body>
+    <h1>Playlist Summary</h1>
+    <h2>{{ playlist.name }}</h2>
+    <ul>
+        {% for track in tracks %}
+        <li>{{ track.track.name }} - {{ track.track.artists[0].name }}</li>
+        {% endfor %}
+    </ul>
+    
+   
+</body>
+{% endblock %}

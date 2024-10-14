@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}User Info{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Enter Your Preferences</h2>
+    <form id="user_info_form" method="POST">
+        
+        <label for="senior_name">Senior Name:</label>
+        <input type="text" id="senior_name" name="senior_name" required><br><br>
+
+        <label for="mood">Mood:</label>
+        <select id="mood" name="mood" required>
+            <option value="calming">Calming</option>
+            <option value="upbeat">Upbeat</option>
+            <option value="melancholic">Melancholic</option>
+            <option value="soft">Soft Melody</option>
+        </select><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" max="120" required><br><br>
+
+        <label for="genres">Preferred Genres (optional):</label>
+        <input type="text" id="genres" name="genres" placeholder="e.g., jazz, classical"><br><br>
+
+        <label for="artists">Favorite Artists (optional):</label>
+        <input type="text" id="artists" name="artists" placeholder="e.g., The Beatles, Adele"><br><br>
+
+        <label for="Language">Preferred Language (optional):</label>
+        <input type="text" id="language" name="language" placeholder="e.g., English, Mandarin, Hindi"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

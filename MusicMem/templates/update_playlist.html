@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Playlist</title>
+</head>
+<body>
+    <h1>Update Playlist</h1>
+    <form method="POST">
+        <input type="text" name="playlist_name" placeholder="New Playlist Name">
+        <input type="text" name="new_tracks" placeholder="Comma-separated track IDs to add">
+        <button type="submit">Update Playlist</button>
+    </form>
+
+    <a href="{{ url_for('show_playlist') }}">Back to Playlist Summary</a>
+    <a href="{{ url_for('home') }}">Home</a>
+</body>
+</html>

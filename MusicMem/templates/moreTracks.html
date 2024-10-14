@@ -1,0 +1,52 @@
+<!--
+Made a copy of 'results' to start as a template for 'more tracks' 
+8-13-24
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORE Tracks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>MORE Tracks</h1>
+    <form action="/add_to_playlist" method="post">
+        
+        <input type="hidden" name="artist_name" value="{{ artist_name }}">
+        <!--
+        -->
+        <label for="playlist_name">Playlist Name:</label>
+        <input type="text" id="playlist_name" name="playlist_name" >*
+        <br>
+        <button type="submit">Add to Playlist*</button> < or >
+        <button type="submit" formaction="moreTracks"
+                name="submit_type" value="sub_1">Get More Like These
+        </button>
+        <ul>
+            {% for track in tracks %}
+                <li>
+                    <p>{{ track['name'] }} by {{ track['artists'][0]['name'] }}</p>
+                    <audio controls>
+                        <source src="{{ track['preview_url'] }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <label>
+                        <input type="checkbox" name="track_ids" value="{{ track['id'] }}">
+                        Note this track
+                     </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Add to Playlist*</button>
+        < or >
+        <button type="submit" formaction="moreTracks"
+                name="submit_type" value="sub_1">Get More Like These
+        </button>
+        
+    </form>
+    <a href="/">Back</a>
+</body>
+</html>
